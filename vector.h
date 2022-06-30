@@ -51,6 +51,16 @@ namespace myvector
 				*_finish++ = val;
 			}
 		}
+		void swap(vector<T> v) {
+			::swap(_start, v._start);
+			::swap(_finish, v._finish);
+			::swap(_end_of_storage, v._end_of_storage);
+		}
+		//赋值运算符重载函数
+		vector<T> operator=(vector<T> v) {
+			swap(v);
+			return *this;
+		}
 		//判断vector容器是否为空
 		bool empty() {
 			if (_start == _finish) return true;
@@ -175,6 +185,7 @@ namespace myvector
 			}
 			cout << endl;
 		}
+		//析构函数
 		~vector(){
 			if (_start){
 				delete[] _start;//释放空间
